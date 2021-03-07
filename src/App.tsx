@@ -1,15 +1,25 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
 
+import {
+  Switch,
+  Route,
+  Link,
+  Redirect,
+} from "react-router-dom";
+
 import logo from './logo.svg';
 
 const useStyles = createUseStyles({
+  code: {
+    fontFamily: 'source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace',
+  },
   app: {
     textAlign: 'center',
   },
   appHeader: {
     backgroundColor: '#282c34',
-    minHeight: '100vh',
+    height: '5%',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -47,6 +57,23 @@ const App: React.FC = () => {
       <header className={classes.appHeader}>
         <img src={logo} className={`App-logo ${classes.appLogo}`} alt="logo" />
       </header>
+
+      <div>
+        <ul>
+          <li>
+            <Link to="/moviematch">Tinder for Plex</Link>
+          </li>
+        </ul>
+
+        <Switch>
+          <Route path='/moviematch' render={() => (
+            <>
+              {window.location.href = 'http://192.168.0.10:50080/'}
+              <Redirect to='/' />
+            </>
+          )} />
+        </Switch>
+      </div>
     </div>
   )
 };
